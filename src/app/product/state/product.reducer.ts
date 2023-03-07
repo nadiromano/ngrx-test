@@ -13,6 +13,7 @@ export interface ProductState {
   products: Product[];
   error: string;
   areProductLoading: boolean;
+  isNewProductFormVisible: boolean;
 }
 
 const initialState: ProductState = {
@@ -21,6 +22,7 @@ const initialState: ProductState = {
   products: [],
   error: '',
   areProductLoading: false,
+  isNewProductFormVisible: false,
 };
 
 const getProductFeatureState = createFeatureSelector<ProductState>('products');
@@ -39,6 +41,11 @@ export const getAreProductLoading = createSelector(
   (state) => state.areProductLoading
 );
 
+export const getIsNewProductFormVisible = createSelector(
+  getProductFeatureState,
+  (state) => state.isNewProductFormVisible
+);
+
 export const getCurrentProductId = createSelector(
   getProductFeatureState,
   (state) => state.currentProductId
@@ -50,7 +57,7 @@ export const getCurrentProduct = createSelector(
   (state, currentProductId) => {
     if (currentProductId === '') {
       return {
-        id: 0,
+        id: '',
         title: '',
         description: '',
         price: null,
@@ -73,6 +80,12 @@ export const ProductReducer = createReducer<ProductState>(
       showProductCard: action.showProductCard,
     };
   }),
+  on(ProductActions.toggleisNewProductFormVisible, (state): ProductState => {
+    return {
+      ...state,
+      isNewProductFormVisible: !state.isNewProductFormVisible,
+    };
+  }),
   on(ProductActions.setCurrentProduct, (state, action): ProductState => {
     return {
       ...state,
@@ -91,6 +104,8 @@ export const ProductReducer = createReducer<ProductState>(
       products: action.products,
       error: '',
       areProductLoading: false,
+      currentProductId:
+        action.products.length > 1 ? action.products[0].id : null,
     };
   }),
   on(ProductActions.loadProductsFailure, (state, action): ProductState => {
@@ -99,6 +114,13 @@ export const ProductReducer = createReducer<ProductState>(
       products: [],
       error: action.error,
       areProductLoading: false,
+    };
+  }),
+  on(ProductActions.addProductSuccess, (state, action): ProductState => {
+    return {
+      ...state,
+      products: [...state.products, action.product],
+      error: '',
     };
   })
 );

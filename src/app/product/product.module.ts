@@ -8,11 +8,27 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductShellComponent } from './product-shell/product-shell.component';
 import { ProductEffects } from './state/product.effects';
 import { ProductReducer } from './state/product.reducer';
+import { NewProductComponent } from './new-product/new-product.component';
 
-const productRoutes: Routes = [{ path: '', component: ProductShellComponent }];
+const productRoutes: Routes = [
+  {
+    path: '',
+    component: ProductShellComponent,
+    children: [
+      {
+        path: 'new-product',
+        component: NewProductComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
-  declarations: [ProductShellComponent, ProductListComponent],
+  declarations: [
+    ProductShellComponent,
+    ProductListComponent,
+    NewProductComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,

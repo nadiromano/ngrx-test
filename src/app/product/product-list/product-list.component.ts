@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State } from 'src/app/state/app.state';
@@ -8,8 +7,10 @@ import { Product } from '../product.model';
 import * as ProductActions from '../state/product.actions';
 import {
   getAreProductLoading,
+  getCurrentProductId,
+  getIsNewProductFormVisible,
   getProducts,
-  getShowProductCard
+  getShowProductCard,
 } from '../state/product.reducer';
 
 @Component({
@@ -21,9 +22,10 @@ export class ProductListComponent implements OnInit {
   products$!: Observable<Product[]>;
   areProductLoading$!: Observable<boolean>;
   showProductCard$!: Observable<boolean>;
-  panelOpenState = false;
+  currentProductId$!: Observable<string | null>;
+  isNewProductFormVisible$!: Observable<boolean>;
 
-  constructor(private store: Store<State> , public dialog: MatDialog) {}
+  constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
     this.products$ = this.store.select(getProducts);
@@ -31,6 +33,8 @@ export class ProductListComponent implements OnInit {
 
     this.areProductLoading$ = this.store.select(getAreProductLoading);
     this.showProductCard$ = this.store.select(getShowProductCard);
+    this.currentProductId$ = this.store.select(getCurrentProductId);
+    this.isNewProductFormVisible$ = this.store.select(getIsNewProductFormVisible)
   }
 
   onShowProductCardChange(event: MatButtonToggleChange) {
@@ -40,6 +44,12 @@ export class ProductListComponent implements OnInit {
   }
 
   onCurrentProductSelected(product: Product) {
-    console.log(product);
+    this.store.dispatch(
+      ProductActions.setCurrentProduct({ currentProductId: product.id })
+    );
+  }
+
+  toggleFormProduct() {
+    this.store.dispatch(ProductActions.toggleisNewProductFormVisible());
   }
 }

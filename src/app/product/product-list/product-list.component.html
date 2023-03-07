@@ -1,4 +1,4 @@
-<div class="product-list-container">
+<div class="product-list-container" *ngIf="!(isNewProductFormVisible$ | async)">
   <div *ngIf="!(areProductLoading$ | async)" class="btn-container">
     <mat-button-toggle-group
       #group="matButtonToggleGroup"
@@ -25,9 +25,11 @@
       mat-mini-fab
       color="accent"
       aria-label="Example icon button with a plus one icon"
-  
+      (click)="toggleFormProduct()"
     >
-      <mat-icon>add</mat-icon>
+      <a mat-menu-item routerLink="/new-product" routerLinkActive="active-link"
+        ><mat-icon>add</mat-icon></a
+      >
     </button>
   </div>
 
@@ -75,12 +77,14 @@
       </div>
     </ng-container>
   </div>
-
   <div class="spinner-container" *ngIf="areProductLoading$ | async">
     <mat-progress-spinner
       [color]="'secundary'"
       [mode]="'indeterminate'"
-      [diameter]="70"
+      [diameter]="30"
     >
     </mat-progress-spinner>
   </div>
+</div>
+
+<app-new-product *ngIf="isNewProductFormVisible$ | async"> </app-new-product>
