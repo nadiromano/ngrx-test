@@ -9,6 +9,7 @@ import { ProductShellComponent } from './product-shell/product-shell.component';
 import { ProductEffects } from './state/product.effects';
 import { ProductReducer } from './state/product.reducer';
 import { NewProductComponent } from './new-product/new-product.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const productRoutes: Routes = [
   {
@@ -35,6 +36,7 @@ const productRoutes: Routes = [
     RouterModule.forChild(productRoutes),
     StoreModule.forFeature('products', ProductReducer),
     EffectsModule.forFeature([ProductEffects]),
+    ReactiveFormsModule
   ],
 })
 export class ProductModule {}

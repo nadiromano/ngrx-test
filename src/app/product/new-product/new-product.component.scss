@@ -1,7 +1,39 @@
-.form-container {
-  height: 1vh;
-  width: 1vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.form {
+  &-container {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-card {
+    width: 60%;
+  }
+
+  &-input {
+    width: 90%;
+  }
+  &-content {
+    display: flex;
+    justify-content: center;
+  }
+  &-actions {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.add-field {
+  background-color: var(--primary);
+  width: 60%;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
 }
