@@ -10,6 +10,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { ShellComponent } from './core/layout/shell/shell.component';
 import { NavigationComponent } from './core/layout/navigation/navigation.component';
 import { MaterialModule } from './material/material.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, ShellComponent, NavigationComponent],
@@ -19,8 +21,13 @@ import { MaterialModule } from './material/material.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      name: 'BackOffice Demo App Devtools',
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { State } from 'src/app/state/app.state';
 import { Product } from '../product.model';
-import { ProductService } from '../product.service';
+import * as ProductActions from '../state/product.actions';
+import {
+  getAreProductLoading,
+  getProducts,
+  getShowProductCard
+} from '../state/product.reducer';
 
 @Component({
   selector: 'app-product-list',
@@ -9,52 +18,28 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  products: Product[] = [
-    {
-      title: 'Test1',
-      category: 'Category 1',
-      price: 11,
-      employee: 'esmployee',
-      description: 'test descrition',
-      reviews: ['bello', 'molto bello'],
-    },
-    {
-      title: 'Test2',
-      category: 'Category 2',
-      price: 21,
-      employee: 'esmployee',
-      description: 'test descrition',
-      reviews: ['bello', 'molto bello'],
-    },
-    {
-      title: 'Test3',
-      category: 'Category 3',
-      price: 31,
-      employee: 'esmployee',
-      description: 'test descrition',
-      reviews: ['bello', 'molto bello'],
-    },
-  ];
+  products$!: Observable<Product[]>;
+  areProductLoading$!: Observable<boolean>;
+  showProductCard$!: Observable<boolean>;
+  panelOpenState = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(private store: Store<State> , public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.productService
-      .getProducts()
-      .pipe(
-        map((products) =>
-          products.map((product) => {
-            return {
-              id: product.id,
-              title: product.data.title,
-              category: product.data.category,
-              price: product.data.price,
-              employee: product.data.employee,
-              reviews: product.data.reviews,
-            };
-          })
-        )
-      )
-      .subscribe((products) => (this.products = products));
+    this.products$ = this.store.select(getProducts);
+    this.store.dispatch(ProductActions.loadProducts());
+
+    this.areProductLoading$ = this.store.select(getAreProductLoading);
+    this.showProductCard$ = this.store.select(getShowProductCard);
+  }
+
+  onShowProductCardChange(event: MatButtonToggleChange) {
+    this.store.dispatch(
+      ProductActions.toggleProductCard({ showProductCard: event.value })
+    );
+  }
+
+  onCurrentProductSelected(product: Product) {
+    console.log(product);
   }
 }

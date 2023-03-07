@@ -1,11 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
+import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [],
@@ -17,6 +20,9 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatDividerModule,
     MatTableModule,
+    MatProgressSpinnerModule,
+    MatButtonToggleModule,
+    MatExpansionModule,
   ],
   exports: [
     MatToolbarModule,
@@ -25,6 +31,9 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatDividerModule,
     MatTableModule,
+    MatProgressSpinnerModule,
+    MatButtonToggleModule,
+    MatExpansionModule,
   ],
 })
 export class MaterialModule {}

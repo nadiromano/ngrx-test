@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductShellComponent } from './product-shell/product-shell.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { MaterialModule } from '../material/material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductShellComponent } from './product-shell/product-shell.component';
+import { ProductEffects } from './state/product.effects';
+import { ProductReducer } from './state/product.reducer';
 
 const productRoutes: Routes = [{ path: '', component: ProductShellComponent }];
 
@@ -14,6 +17,8 @@ const productRoutes: Routes = [{ path: '', component: ProductShellComponent }];
     CommonModule,
     MaterialModule,
     RouterModule.forChild(productRoutes),
+    StoreModule.forFeature('products', ProductReducer),
+    EffectsModule.forFeature([ProductEffects]),
   ],
 })
 export class ProductModule {}
