@@ -46,8 +46,22 @@ export class ProductEffects {
             return { ...action.product, id: productId };
           }),
           map((product) => ProductActions.addProductSuccess({ product })),
+          catchError((error) => of(ProductActions.addProductFailure({ error })))
+        )
+      )
+    );
+  });
+
+  deleteProduct$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.deleteProduct),
+      concatMap((action) =>
+        this.productService.deleteProduct(action.productId).pipe(
+          map((_) =>
+            ProductActions.deleteProductSuccess({ productId: action.productId })
+          ),
           catchError((error) =>
-            of(ProductActions.loadProductsFailure({ error }))
+            of(ProductActions.deleteProductFailure({ error }))
           )
         )
       )

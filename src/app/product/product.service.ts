@@ -25,11 +25,17 @@ export class ProductService {
       );
   }
 
-  addProduct(product: Product) {
+  addProduct(product: Product): Observable<string> {
     return this.http.post(
       `${this.baseUrl}/stores/${this.storeId}/products`,
       product,
       { responseType: 'text' }
+    );
+  }
+
+  deleteProduct(productId: string) {
+    return this.http.delete(
+      `${this.baseUrl}/stores/${this.storeId}/products/${productId}`
     );
   }
 
