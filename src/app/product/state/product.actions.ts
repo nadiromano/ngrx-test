@@ -6,9 +6,11 @@ export const toggleProductCard = createAction(
   props<{ showProductCard: boolean }>()
 );
 
-export const toggleisNewProductFormVisible = createAction(
-  '[Product] Toggle New Product Form'
+export const toggleIsProductFormVisible = createAction(
+  '[Product] Toggle Product Form'
 );
+
+export const createNewProduct = createAction('[Product] Create Empty Product');
 
 export const setCurrentProduct = createAction(
   '[Product] Set Current Product',
@@ -27,7 +29,10 @@ export const loadProductsFailure = createAction(
   props<{ error: string }>()
 );
 
-export const addProduct = createAction('[Product] Add Product');
+export const addProduct = createAction(
+  '[Product] Add Product',
+  props<{ product: Product }>()
+);
 
 export const addProductSuccess = createAction(
   '[Product] Add Success',
@@ -36,5 +41,20 @@ export const addProductSuccess = createAction(
 
 export const addProductFailure = createAction(
   '[Product] Add Failure',
+  props<{ error: string }>()
+);
+
+export const deleteProduct = createAction(
+  '[Product] delete Product',
+  props<{ productId: string }>()
+);
+
+export const deleteProductSuccess = createAction(
+  '[Product] delete Success',
+  props<{ productId: string }>()
+);
+
+export const deleteProductFailure = createAction(
+  '[Product] delete Failure',
   props<{ error: string }>()
 );

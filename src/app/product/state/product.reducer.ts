@@ -13,7 +13,7 @@ export interface ProductState {
   products: Product[];
   error: string;
   areProductLoading: boolean;
-  isNewProductFormVisible: boolean;
+  isProductFormVisible: boolean;
 }
 
 const initialState: ProductState = {
@@ -22,7 +22,7 @@ const initialState: ProductState = {
   products: [],
   error: '',
   areProductLoading: false,
-  isNewProductFormVisible: false,
+  isProductFormVisible: false,
 };
 
 const getProductFeatureState = createFeatureSelector<ProductState>('products');
@@ -41,9 +41,9 @@ export const getAreProductLoading = createSelector(
   (state) => state.areProductLoading
 );
 
-export const getIsNewProductFormVisible = createSelector(
+export const getIsProductFormVisible = createSelector(
   getProductFeatureState,
-  (state) => state.isNewProductFormVisible
+  (state) => state.isProductFormVisible
 );
 
 export const getCurrentProductId = createSelector(
@@ -60,10 +60,11 @@ export const getCurrentProduct = createSelector(
         id: '',
         title: '',
         description: '',
-        price: null,
-        employee: null,
+        category: '',
+        price: 0,
+        employee: '',
         reviews: [],
-      };
+      } as Product;
     } else {
       return currentProductId
         ? state.products.find((p) => p.id === currentProductId)
@@ -80,10 +81,17 @@ export const ProductReducer = createReducer<ProductState>(
       showProductCard: action.showProductCard,
     };
   }),
-  on(ProductActions.toggleisNewProductFormVisible, (state): ProductState => {
+  on(ProductActions.toggleIsProductFormVisible, (state): ProductState => {
     return {
       ...state,
-      isNewProductFormVisible: !state.isNewProductFormVisible,
+      isProductFormVisible: !state.isProductFormVisible,
+    };
+  }),
+  on(ProductActions.createNewProduct, (state): ProductState => {
+    return {
+      ...state,
+      currentProductId: '',
+      isProductFormVisible: true,
     };
   }),
   on(ProductActions.setCurrentProduct, (state, action): ProductState => {
@@ -104,8 +112,6 @@ export const ProductReducer = createReducer<ProductState>(
       products: action.products,
       error: '',
       areProductLoading: false,
-      currentProductId:
-        action.products.length > 1 ? action.products[0].id : null,
     };
   }),
   on(ProductActions.loadProductsFailure, (state, action): ProductState => {
@@ -117,10 +123,35 @@ export const ProductReducer = createReducer<ProductState>(
     };
   }),
   on(ProductActions.addProductSuccess, (state, action): ProductState => {
+    console.log(action);
+    console.log(state);
     return {
       ...state,
       products: [...state.products, action.product],
       error: '',
+      isProductFormVisible: false,
+    };
+  }),
+  on(ProductActions.addProductFailure, (state, action): ProductState => {
+    console.log(action);
+    console.log(state);
+    return {
+      ...state,
+      error: action.error,
+    };
+  }),
+  on(ProductActions.deleteProductSuccess, (state, action): ProductState => {
+    return {
+      ...state,
+      products: state.products.filter(product => product.id !== action.productId),
+      currentProductId: null,
+      error: ''
+    };
+  }),
+  on(ProductActions.deleteProductFailure, (state, action): ProductState => {
+    return {
+      ...state,
+      error: action.error
     };
   })
 );

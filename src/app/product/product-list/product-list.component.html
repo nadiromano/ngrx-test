@@ -1,4 +1,4 @@
-<div class="product-list-container" *ngIf="!(isNewProductFormVisible$ | async)">
+<div class="product-list-container" *ngIf="!(isProductFormVisible$ | async)">
   <div *ngIf="!(areProductLoading$ | async)" class="btn-container">
     <mat-button-toggle-group
       #group="matButtonToggleGroup"
@@ -25,7 +25,7 @@
       mat-mini-fab
       color="accent"
       aria-label="Example icon button with a plus one icon"
-      (click)="toggleFormProduct()"
+      (click)="onNewProduct()"
     >
       <a mat-menu-item routerLink="/new-product" routerLinkActive="active-link"
         ><mat-icon>add</mat-icon></a
@@ -54,7 +54,7 @@
           </mat-card-actions>
         </mat-card> -->
         <mat-accordion>
-          <mat-expansion-panel *ngFor="let product of products" class="list">
+          <mat-expansion-panel class="list">
             <mat-expansion-panel-header
               (click)="onCurrentProductSelected(product)"
             >
@@ -69,8 +69,13 @@
               </div>
             </mat-expansion-panel-header>
             <div class="list-actions">
-              <button mat-stroked-button color="accent">Accent</button>
-              <button mat-stroked-button color="warn">Warn</button>
+              <button
+                mat-stroked-button
+                color="warn"
+                (click)="deleteProduct(product.id)"
+              >
+                Delete
+              </button>
             </div>
           </mat-expansion-panel>
         </mat-accordion>
@@ -87,4 +92,4 @@
   </div>
 </div>
 
-<app-new-product *ngIf="isNewProductFormVisible$ | async"> </app-new-product>
+<app-new-product *ngIf="isProductFormVisible$ | async"> </app-new-product>

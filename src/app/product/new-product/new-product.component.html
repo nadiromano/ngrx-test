@@ -1,29 +1,9 @@
 <div class="form-container">
   <mat-card class="form-card">
     <mat-card-header>
-      <mat-card-title>Add a Product</mat-card-title>
+      <mat-card-title>Add New Product</mat-card-title>
     </mat-card-header>
     <mat-card-content class="form-content">
-      <!-- <div [formGroup]="productForm" class="add-field">
-        <h2>Add Product</h2>
-        <mat-form-field class="form-input">
-          <input
-            formControlName="title"
-            ngDefaultControl
-            matInput
-            placeholder="Add a Title"
-          />
-        </mat-form-field>
-        <span class="right-align-next-element"></span>
-        <button
-          class="primary-btn"
-          mat-button
-          (click)="onSubmit()"
-          cdkFocusInitial
-        >
-          Add field
-        </button>
-      </div> -->
       <form class="example-form" [formGroup]="productForm">
         <mat-form-field class="example-full-width">
           <mat-label>Product Title</mat-label>
@@ -37,11 +17,25 @@
 
         <mat-form-field class="example-full-width">
           <mat-label>Price</mat-label>
-          <input formControlName="price" matInput placeholder="Add a Price" />
+          <input
+            type="number"
+            formControlName="price"
+            matInput
+            placeholder="Add a Price"
+          />
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <mat-label>Description</mat-label>
+          <mat-label>Category</mat-label>
+          <input
+            formControlName="category"
+            matInput
+            placeholder="Add a Category"
+          />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Product Description</mat-label>
           <input
             formControlName="description"
             matInput
@@ -60,11 +54,11 @@
       </form>
     </mat-card-content>
     <mat-card-actions class="form-actions" style="margin-bottom: 8px">
-      <button mat-stroked-button color="warn" (click)="onCancel()">
-        Cancel
+      <button mat-stroked-button color="primary" (click)="onCancel()">
+        Go Back
       </button>
       <button mat-raised-button class="btn" (click)="onSave()">
-        Save the product
+        Save Product
       </button>
     </mat-card-actions>
   </mat-card>

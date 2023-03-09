@@ -18,11 +18,11 @@ import { environment } from '../environments/environment';
   declarations: [AppComponent, ShellComponent, NavigationComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({

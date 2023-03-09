@@ -7,8 +7,8 @@ import { Product } from '../product.model';
 import * as ProductActions from '../state/product.actions';
 import {
   getAreProductLoading,
-  getCurrentProductId,
-  getIsNewProductFormVisible,
+  getCurrentProduct,
+  getIsProductFormVisible,
   getProducts,
   getShowProductCard,
 } from '../state/product.reducer';
@@ -22,8 +22,8 @@ export class ProductListComponent implements OnInit {
   products$!: Observable<Product[]>;
   areProductLoading$!: Observable<boolean>;
   showProductCard$!: Observable<boolean>;
-  currentProductId$!: Observable<string | null>;
-  isNewProductFormVisible$!: Observable<boolean>;
+  currentProduct$!: Observable<Product | null | undefined>;
+  isProductFormVisible$!: Observable<boolean>;
 
   constructor(private store: Store<State>) {}
 
@@ -33,8 +33,8 @@ export class ProductListComponent implements OnInit {
 
     this.areProductLoading$ = this.store.select(getAreProductLoading);
     this.showProductCard$ = this.store.select(getShowProductCard);
-    this.currentProductId$ = this.store.select(getCurrentProductId);
-    this.isNewProductFormVisible$ = this.store.select(getIsNewProductFormVisible)
+    this.currentProduct$ = this.store.select(getCurrentProduct);
+    this.isProductFormVisible$ = this.store.select(getIsProductFormVisible);
   }
 
   onShowProductCardChange(event: MatButtonToggleChange) {
@@ -49,7 +49,11 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  toggleFormProduct() {
-    this.store.dispatch(ProductActions.toggleisNewProductFormVisible());
+  onNewProduct() {
+    this.store.dispatch(ProductActions.createNewProduct());
+  }
+
+  deleteProduct(productId: string) {
+    this.store.dispatch(ProductActions.deleteProduct({ productId }));
   }
 }
