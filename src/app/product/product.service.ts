@@ -29,7 +29,7 @@ export class ProductService {
     return this.http.post(
       `${this.baseUrl}/stores/${this.storeId}/products`,
       product,
-      { responseType: 'text', observe: 'events' }
+      { responseType: 'text' }
     );
   }
 

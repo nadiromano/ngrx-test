@@ -36,4 +36,21 @@ export class ProductEffects {
       )
     );
   });
+
+  addProducts$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductActions.addProduct),
+      concatMap((action) =>
+        this.productService.addProduct(action.product).pipe(
+          map((productId) => {
+            return { ...action.product, id: productId };
+          }),
+          map((product) => ProductActions.addProductSuccess({ product })),
+          catchError((error) =>
+            of(ProductActions.loadProductsFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }
