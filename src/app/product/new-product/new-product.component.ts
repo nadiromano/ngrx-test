@@ -55,11 +55,12 @@ export class NewProductComponent implements OnInit {
     if (this.productForm.valid) {
       const product: Product = { ...this.productForm.value, reviews: [] };
       // this.store.dispatch(ProductActions.addProduct({ product }));
-    //   this.productService
-    //     .addProduct(product)
-    //     .subscribe((res) => console.log(res));
-    // }
-    console.warn(this.productForm);}
+      this.productService
+        .addProduct(product)
+        .subscribe((res) => console.log(res));
+      // }
+      console.warn(this.productForm);
+    }
   }
 
   onCancel() {

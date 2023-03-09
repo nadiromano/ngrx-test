@@ -11,6 +11,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -27,6 +29,8 @@ import { MatInputModule } from '@angular/material/input';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
+    MatChipsModule,
+    MatBadgeModule,
   ],
   exports: [
     MatToolbarModule,
@@ -40,6 +44,8 @@ import { MatInputModule } from '@angular/material/input';
     MatExpansionModule,
     MatFormFieldModule,
     MatInputModule,
+    MatChipsModule,
+    MatBadgeModule,
   ],
 })
 export class MaterialModule {}

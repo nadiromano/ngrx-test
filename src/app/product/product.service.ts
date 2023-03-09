@@ -25,6 +25,14 @@ export class ProductService {
       );
   }
 
+  addProduct(product: Product) {
+    return this.http.post(
+      `${this.baseUrl}/stores/${this.storeId}/products`,
+      product,
+      { responseType: 'text', observe: 'events' }
+    );
+  }
+
   private handleError(err: any) {
     let errorMessage: string;
     if (err.error instanceof ErrorEvent) {

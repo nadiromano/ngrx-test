@@ -20,6 +20,7 @@ export class ProductEffects {
               return {
                 id: product.id,
                 title: product.data.title,
+                description: product.data.description,
                 category: product.data.category,
                 price: product.data.price,
                 employee: product.data.employee,
@@ -35,6 +36,4 @@ export class ProductEffects {
       )
     );
   });
-
- 
 }

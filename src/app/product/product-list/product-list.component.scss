@@ -8,21 +8,25 @@
 }
 
 .list {
-  margin-bottom: 8px;
+  margin: 8px 0;
+
   &-header {
     display: inline-flex;
-    width: 80%;
+    width: 95%;
     justify-content: flex-start;
     align-items: center;
+    gap: 8px;
   }
 
   &-actions {
     display: flex;
     gap: 8px;
+    margin-top: 14px;
   }
 }
 
 .category-container {
+  min-width: 100px;
   padding: 3px 8px;
   display: flex;
   justify-content: center;
@@ -30,6 +34,77 @@
   background-color: rgba(123, 31, 162, 0.4);
   border-radius: 10px;
   margin-right: 8px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  p {
+    margin: 0;
+  }
+  &-title {
+    font-weight: 600;
+  }
+
+  &-description {
+    font-size: small;
+  }
+}
+
+.info-container {
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.employee-container {
+  min-width: 100px;
+  padding: 3px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(84, 107, 99, 0.6);
+  border-radius: 10px;
+  margin-right: 8px;
+  h3 {
+    margin: 0;
+    font-size: small;
+  }
+}
+
+.price-container {
+  min-width: 50px;
+  padding: 3px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(83, 81, 84, 0.6);
+  border-radius: 10px;
+  margin-right: 8px;
+  h3 {
+    margin: 0;
+  }
+}
+
+.review-icon {
+  transform: translateY(3px);
+  margin-right: 16px;
+}
+
+.review {
+  padding: 5px 8px;
+  background-color: rgba(77, 156, 116, 0.4);
+  margin-bottom: 5px;
+  border-radius: 5px;
+  &-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 }
 
 .card {
