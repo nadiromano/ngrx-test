@@ -8,9 +8,10 @@ import { MaterialModule } from '../material/material.module';
 import { StoreEffect } from './store/state/store.effects';
 import { StoreReducer } from './store/state/store.reducer';
 import { StoreModuleApp } from './store/store.module';
+import { ErrorSnackBarComponent } from './error-snack-bar/error-snack-bar.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ErrorSnackBarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

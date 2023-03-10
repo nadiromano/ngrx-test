@@ -38,9 +38,9 @@
             matInput
             placeholder="Add a Category"
           />
-          <mat-error *ngIf="productForm.get('title')?.errors"
-          >Category is required </mat-error
-        >
+          <mat-error *ngIf="productForm.get('category')?.errors"
+            >Category is required
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -98,4 +98,3 @@
     </mat-card-actions>
   </mat-card>
 </div>
-

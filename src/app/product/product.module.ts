@@ -10,6 +10,7 @@ import { ProductEffects } from './state/product.effects';
 import { ProductReducer } from './state/product.reducer';
 import { NewProductComponent } from './new-product/new-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorSnackBarComponent } from '../core/error-snack-bar/error-snack-bar.component';
 
 const productRoutes: Routes = [
   {
@@ -32,5 +33,6 @@ const productRoutes: Routes = [
     EffectsModule.forFeature([ProductEffects]),
     ReactiveFormsModule,
   ],
+  providers: [ErrorSnackBarComponent],
 })
 export class ProductModule {}
