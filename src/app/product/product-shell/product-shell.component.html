@@ -1,1 +1,51 @@
-<app-product-list></app-product-list>
+<div class="product-container">
+  <div *ngIf="!(areProductLoading$ | async) && !(isProductFormVisible$|async)" class="btn-container">
+    <mat-button-toggle-group
+      #group="matButtonToggleGroup"
+      [value]="showProductCard$ | async"
+      (change)="onShowProductCardChange($event)"
+    >
+      <mat-button-toggle
+        [checked]="!(showProductCard$ | async)"
+        value="false"
+        aria-label="Text align left"
+      >
+        <mat-icon>list</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle
+        value="true"
+        aria-label="Text align center"
+        [checked]="showProductCard$ | async"
+      >
+        <mat-icon>grid_on</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <button
+      mat-mini-fab
+      color="accent"
+      aria-label="Example icon button with a plus one icon"
+      (click)="onNewProduct()"
+    >
+      <a mat-menu-item><mat-icon>add</mat-icon></a>
+    </button>
+  </div>
+  <app-new-product *ngIf="isProductFormVisible$ | async"> </app-new-product>
+  <div class="spinner-container" *ngIf="areProductLoading$ | async">
+    <mat-progress-spinner
+      [color]="'secundary'"
+      [mode]="'indeterminate'"
+      [diameter]="30"
+    >
+    </mat-progress-spinner>
+  </div>
+
+  <app-product-list
+    *ngIf="!(showProductCard$ | async) && !(isProductFormVisible$ | async)"
+    [products]="products$ | async"
+    [areProductLoading]="areProductLoading$ | async"
+    (showProductCardChange)="onShowProductCardChange($event)"
+    (currentProductSelectChange)="onCurrentProductSelected($event)"
+    (onDeleteProduct)="deleteProduct($event)"
+  ></app-product-list>
+</div>
