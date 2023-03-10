@@ -5,6 +5,9 @@ import { State } from '../state/product.reducer';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 import * as ProductActions from '../state/product.actions';
+import { Observable } from 'rxjs';
+import { getStoreEmployee } from 'src/app/core/store/state/store.reducer';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-new-product',
@@ -13,14 +16,12 @@ import * as ProductActions from '../state/product.actions';
 })
 export class NewProductComponent implements OnInit {
   productForm!: FormGroup;
+  employees$!: Observable<string[]>;
 
-  constructor(
-    private fb: FormBuilder,
-    private store: Store<State>,
-    private productService: ProductService
-  ) {}
+  constructor(private fb: FormBuilder, private store: Store<State>) {}
 
   ngOnInit() {
+    this.employees$ = this.store.select(getStoreEmployee);
     this.productForm = this.fb.group({
       title: [
         '',
@@ -55,15 +56,14 @@ export class NewProductComponent implements OnInit {
     if (this.productForm.valid) {
       const product: Product = { ...this.productForm.value, reviews: [] };
       this.store.dispatch(ProductActions.addProduct({ product }));
-      // this.productService
-      //   .addProduct(product)
-      //   .subscribe((res) => console.log(res));
-      // // }
-      // console.warn(this.productForm);
     }
   }
 
   onCancel() {
     this.store.dispatch(ProductActions.toggleIsProductFormVisible());
+  }
+
+  onSelectionEmployeeChange(event: MatSelectChange) {
+    this.productForm.patchValue({ employee: event.value });
   }
 }

@@ -13,7 +13,7 @@ export interface StoreState {
 }
 
 const initialState: StoreState = {
-  store: { name: '', category: '', employee: [] },
+  store: { name: '', category: '', employees: [] },
   error: '',
 };
 
@@ -26,7 +26,7 @@ export const getStoreInfo = createSelector(
 
 export const getStoreEmployee = createSelector(
   getStoreFeatureState,
-  (store) => store.store.employee
+  (store) => store.store.employees
 );
 
 export const getStoreError = createSelector(

@@ -43,13 +43,20 @@
           />
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <mat-form-field class="example-full-width" *ngIf="employees$ | async">
           <mat-label>Employee</mat-label>
-          <input
-            formControlName="employee"
-            matInput
-            placeholder="Add a Employee"
-          />
+          <mat-select
+            value=""
+            name="employee"
+            (selectionChange)="onSelectionEmployeeChange($event)"
+          >
+            <mat-option
+              *ngFor="let employee of employees$ | async"
+              [value]="employee"
+            >
+              {{ employee }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </form>
     </mat-card-content>

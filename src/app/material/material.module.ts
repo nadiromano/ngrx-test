@@ -13,11 +13,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -31,6 +33,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatInputModule,
     MatChipsModule,
     MatBadgeModule,
+    MatSelectModule,
   ],
   exports: [
     MatToolbarModule,
@@ -46,6 +49,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatInputModule,
     MatChipsModule,
     MatBadgeModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule {}
