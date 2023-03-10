@@ -58,6 +58,25 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+        <div formArrayName="reviews">
+          <h3>Reviews</h3>
+          <button mat-raised-button (click)="addReview()" class="btn-reviews">
+            + Add another reviews
+          </button>
+
+          <div *ngFor="let review of reviews.controls; let i = index">
+            <mat-form-field class="example-full-width">
+              <mat-label>Reviews</mat-label>
+              <input
+                id="review-{{ i }}"
+                [formControlName]="i"
+                matInput
+                placeholder="Add a Review"
+              />
+            </mat-form-field>
+          </div>
+        </div>
       </form>
     </mat-card-content>
     <mat-card-actions class="form-actions" style="margin-bottom: 8px">

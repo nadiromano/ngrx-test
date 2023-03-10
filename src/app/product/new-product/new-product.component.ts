@@ -42,19 +42,21 @@ export class NewProductComponent implements OnInit {
       description: [''],
       price: ['', Validators.required],
       employee: [''],
+      reviews: this.fb.array([this.fb.control('')]),
     });
   }
-  get review() {
-    return this.productForm.get('review') as FormArray;
+
+  get reviews() {
+    return this.productForm.get('reviews') as FormArray;
   }
 
   addReview() {
-    this.review.push(this.fb.control(''));
+    this.reviews.push(this.fb.control(''));
   }
 
   onSave() {
     if (this.productForm.valid) {
-      const product: Product = { ...this.productForm.value, reviews: [] };
+      const product: Product = { ...this.productForm.value };
       this.store.dispatch(ProductActions.addProduct({ product }));
     }
   }
