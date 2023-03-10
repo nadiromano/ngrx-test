@@ -36,11 +36,11 @@
 
         <mat-form-field class="example-full-width">
           <mat-label>Product Description</mat-label>
-          <input
+          <textarea
             formControlName="description"
             matInput
             placeholder="Add a Description"
-          />
+          ></textarea>
         </mat-form-field>
 
         <mat-form-field class="example-full-width" *ngIf="employees$ | async">
