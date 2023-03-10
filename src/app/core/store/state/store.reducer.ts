@@ -19,7 +19,20 @@ const initialState: StoreState = {
 
 const getStoreFeatureState = createFeatureSelector<StoreState>('store');
 
-export const getStore = createSelector(getStoreFeatureState, (store) => store.store);
+export const getStoreInfo = createSelector(
+  getStoreFeatureState,
+  (store) => store.store.name
+);
+
+export const getStoreEmployee = createSelector(
+  getStoreFeatureState,
+  (store) => store.store.employee
+);
+
+export const getStoreError = createSelector(
+  getStoreFeatureState,
+  (store) => store.error
+);
 
 export const StoreReducer = createReducer<StoreState>(
   initialState,

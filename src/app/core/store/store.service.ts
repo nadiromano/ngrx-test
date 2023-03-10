@@ -10,6 +10,6 @@ export class StoreService {
   private storeId = 'ijpxNJLM732vm8AeajMR';
 
   getStore(): Observable<StoreModel> {
-    return this.http.get<StoreModel>('${this.baseUrl}/stores/${this.storeId}');
+    return this.http.get<StoreModel>(`${this.baseUrl}/stores/${this.storeId}`);
   }
 }
