@@ -15,12 +15,6 @@ const productRoutes: Routes = [
   {
     path: '',
     component: ProductShellComponent,
-    children: [
-      {
-        path: 'new-product',
-        component: NewProductComponent,
-      },
-    ],
   },
 ];
 
@@ -36,7 +30,7 @@ const productRoutes: Routes = [
     RouterModule.forChild(productRoutes),
     StoreModule.forFeature('products', ProductReducer),
     EffectsModule.forFeature([ProductEffects]),
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class ProductModule {}

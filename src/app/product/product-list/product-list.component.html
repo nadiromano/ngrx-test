@@ -27,9 +27,7 @@
       aria-label="Example icon button with a plus one icon"
       (click)="onNewProduct()"
     >
-      <a mat-menu-item routerLink="/new-product" routerLinkActive="active-link"
-        ><mat-icon>add</mat-icon></a
-      >
+      <a mat-menu-item><mat-icon>add</mat-icon></a>
     </button>
   </div>
 
@@ -109,20 +107,28 @@
               >
                 Delete Product
               </button>
+              <mat-progress-spinner
+                *ngIf="areProductLoading$ | async"
+                [color]="'secundary'"
+                [mode]="'indeterminate'"
+                [diameter]="30"
+              >
+              </mat-progress-spinner>
             </div>
           </mat-expansion-panel>
         </mat-accordion>
       </div>
     </ng-container>
   </div>
-  <div class="spinner-container" *ngIf="areProductLoading$ | async">
-    <mat-progress-spinner
-      [color]="'secundary'"
-      [mode]="'indeterminate'"
-      [diameter]="30"
-    >
-    </mat-progress-spinner>
-  </div>
+</div>
+
+<div class="spinner-container" *ngIf="areProductLoading$ | async">
+  <mat-progress-spinner
+    [color]="'secundary'"
+    [mode]="'indeterminate'"
+    [diameter]="30"
+  >
+  </mat-progress-spinner>
 </div>
 
 <app-new-product *ngIf="isProductFormVisible$ | async"> </app-new-product>

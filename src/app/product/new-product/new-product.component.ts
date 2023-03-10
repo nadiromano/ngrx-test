@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { State } from 'src/app/state/app.state';
+import { State } from '../state/product.reducer';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 import * as ProductActions from '../state/product.actions';

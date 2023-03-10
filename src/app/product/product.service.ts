@@ -33,7 +33,7 @@ export class ProductService {
     );
   }
 
-  deleteProduct(productId: string) {
+  deleteProduct(productId:string) {
     return this.http.delete(
       `${this.baseUrl}/stores/${this.storeId}/products/${productId}`
     );

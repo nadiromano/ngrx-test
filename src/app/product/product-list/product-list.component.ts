@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { State } from 'src/app/state/app.state';
+import { State } from '../state/product.reducer';
 import { Product } from '../product.model';
 import * as ProductActions from '../state/product.actions';
 import {

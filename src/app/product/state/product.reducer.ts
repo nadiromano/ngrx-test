@@ -6,6 +6,7 @@ import {
 } from '@ngrx/store';
 import { Product } from '../product.model';
 import * as ProductActions from './product.actions';
+import * as AppState from '../../state/app.state';
 
 export interface ProductState {
   showProductCard: boolean;
@@ -14,6 +15,10 @@ export interface ProductState {
   error: string;
   areProductLoading: boolean;
   isProductFormVisible: boolean;
+}
+
+export interface State extends AppState.State {
+  products: ProductState;
 }
 
 const initialState: ProductState = {
@@ -122,14 +127,19 @@ export const ProductReducer = createReducer<ProductState>(
       areProductLoading: false,
     };
   }),
+  on(ProductActions.addProduct, (state): ProductState => {
+    return {
+      ...state,
+      areProductLoading: true,
+    };
+  }),
   on(ProductActions.addProductSuccess, (state, action): ProductState => {
-    console.log(action);
-    console.log(state);
     return {
       ...state,
       products: [...state.products, action.product],
       error: '',
       isProductFormVisible: false,
+      areProductLoading: false,
     };
   }),
   on(ProductActions.addProductFailure, (state, action): ProductState => {
@@ -138,20 +148,31 @@ export const ProductReducer = createReducer<ProductState>(
     return {
       ...state,
       error: action.error,
+      areProductLoading: false,
+    };
+  }),
+  on(ProductActions.deleteProduct, (state, action): ProductState => {
+    return {
+      ...state,
+      areProductLoading: true,
     };
   }),
   on(ProductActions.deleteProductSuccess, (state, action): ProductState => {
     return {
       ...state,
-      products: state.products.filter(product => product.id !== action.productId),
+      products: state.products.filter(
+        (product) => product.id !== action.productId
+      ),
       currentProductId: null,
-      error: ''
+      error: '',
+      areProductLoading: false,
     };
   }),
   on(ProductActions.deleteProductFailure, (state, action): ProductState => {
     return {
       ...state,
-      error: action.error
+      error: action.error,
+      areProductLoading: false,
     };
   })
 );
