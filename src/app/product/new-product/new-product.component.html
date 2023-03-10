@@ -13,6 +13,9 @@
             matInput
             placeholder="Add a Title"
           />
+          <mat-error *ngIf="productForm.get('title')?.errors"
+            >Title is required min 3 character max 150</mat-error
+          >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -23,6 +26,9 @@
             matInput
             placeholder="Add a Price €"
           />
+          <mat-error *ngIf="productForm.get('price')?.errors"
+            >Price is required</mat-error
+          >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -32,6 +38,9 @@
             matInput
             placeholder="Add a Category"
           />
+          <mat-error *ngIf="productForm.get('title')?.errors"
+          >Category is required </mat-error
+        >
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
@@ -89,3 +98,4 @@
     </mat-card-actions>
   </mat-card>
 </div>
+

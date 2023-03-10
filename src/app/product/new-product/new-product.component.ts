@@ -3,9 +3,8 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { State } from '../state/product.reducer';
 import { Product } from '../product.model';
-import { ProductService } from '../product.service';
 import * as ProductActions from '../state/product.actions';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { getStoreEmployee } from 'src/app/core/store/state/store.reducer';
 import { MatSelectChange } from '@angular/material/select';
 
@@ -17,6 +16,8 @@ import { MatSelectChange } from '@angular/material/select';
 export class NewProductComponent implements OnInit {
   productForm!: FormGroup;
   employees$!: Observable<string[]>;
+  private _error: BehaviorSubject<string> = new BehaviorSubject('');
+  error$: Observable<string> = this._error.asObservable();
 
   constructor(private fb: FormBuilder, private store: Store<State>) {}
 
@@ -56,8 +57,12 @@ export class NewProductComponent implements OnInit {
 
   onSave() {
     if (this.productForm.valid) {
+      this._error.next('');
       const product: Product = { ...this.productForm.value };
       this.store.dispatch(ProductActions.addProduct({ product }));
+      return;
+    } else {
+      this._error.next('Please fill all the required fields');
     }
   }
 

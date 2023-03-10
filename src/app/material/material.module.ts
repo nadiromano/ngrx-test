@@ -14,12 +14,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    
+
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -34,6 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatChipsModule,
     MatBadgeModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatToolbarModule,
@@ -50,6 +52,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatChipsModule,
     MatBadgeModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
 })
 export class MaterialModule {}
