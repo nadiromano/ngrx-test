@@ -1,14 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
 import { Store } from '@ngrx/store';
-import { State } from '../state/product.reducer';
+import { Observable } from 'rxjs';
+import { getStoreEmployee } from 'src/app/core/store/state/store.reducer';
 import { Product } from '../product.model';
 import * as ProductActions from '../state/product.actions';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { getStoreEmployee } from 'src/app/core/store/state/store.reducer';
-import { MatSelectChange } from '@angular/material/select';
-import { ErrorSnackBarComponent } from 'src/app/core/error-snack-bar/error-snack-bar.component';
-import { setTimeout } from 'timers';
+import { State } from '../state/product.reducer';
 
 @Component({
   selector: 'app-new-product',
@@ -19,11 +17,7 @@ export class NewProductComponent implements OnInit {
   productForm!: FormGroup;
   employees$!: Observable<string[]>;
 
-  constructor(
-    private fb: FormBuilder,
-    private store: Store<State>,
-    private errorModal: ErrorSnackBarComponent
-  ) {}
+  constructor(private fb: FormBuilder, private store: Store<State>) {}
 
   ngOnInit() {
     this.employees$ = this.store.select(getStoreEmployee);
@@ -65,10 +59,6 @@ export class NewProductComponent implements OnInit {
       this.store.dispatch(ProductActions.addProduct({ product }));
       return;
     } else {
-      this.errorModal.openSnackBar(
-        'Please fill all the required fields',
-        'close'
-      );
       this.productForm.markAllAsTouched();
     }
   }

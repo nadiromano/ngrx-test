@@ -14,9 +14,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
+import { ErrorSnackBarComponent } from './core/error-snack-bar/error-snack-bar.component';
+import { ErrorPageComponent } from './core/error-page/error-page.component';
 
 @NgModule({
-  declarations: [AppComponent, ShellComponent, NavigationComponent],
+  declarations: [
+    AppComponent,
+    ShellComponent,
+    NavigationComponent,
+    ErrorSnackBarComponent,
+    ErrorPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

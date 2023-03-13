@@ -1,18 +1,14 @@
-import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-error-snack-bar',
   templateUrl: './error-snack-bar.component.html',
   styleUrls: ['./error-snack-bar.component.scss'],
 })
-export class ErrorSnackBarComponent {
-  constructor(private _snackBar: MatSnackBar) {}
+export class ErrorSnackBarComponent implements OnInit {
+  @Input() error: string | null = '';
+  constructor() {}
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
-    setTimeout(() => {
-      this._snackBar.dismiss();
-    }, 2500);
+  ngOnInit(): void {
   }
 }

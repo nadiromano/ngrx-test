@@ -1,2 +1,8 @@
-<app-navigation></app-navigation>
-<router-outlet></router-outlet>
+<app-navigation [storeInfo]="storeInfo$ | async"></app-navigation>
+
+<app-error-snack-bar
+  *ngIf="error$ | async"
+  [error]="error$ | async"
+></app-error-snack-bar>
+<app-error-page *ngIf="storeError$ | async"></app-error-page>
+<router-outlet *ngIf="!(storeError$ | async)"></router-outlet>

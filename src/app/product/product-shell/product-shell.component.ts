@@ -25,7 +25,9 @@ export class ProductShellComponent implements OnInit {
   currentProduct$!: Observable<Product | null | undefined>;
   isProductFormVisible$!: Observable<boolean>;
 
-  constructor(private store: Store<State>) {}
+  constructor(
+    private store: Store<State>,
+  ) {}
 
   ngOnInit(): void {
     this.products$ = this.store.select(getProducts);

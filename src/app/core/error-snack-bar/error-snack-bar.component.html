@@ -1,0 +1,9 @@
+<div class="error-container">
+  <div class="error-header">
+    <mat-icon> error_outline </mat-icon>
+    <h4>An error occurred</h4>
+    <mat-icon class="error-close"> close </mat-icon>
+  </div>
+
+  <p class="error-message" *ngIf="error">{{ error }}</p>
+</div>

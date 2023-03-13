@@ -26,27 +26,22 @@ export class ProductService {
   }
 
   addProduct(product: Product): Observable<string> {
-    return this.http.post(
-      `${this.baseUrl}/stores/${this.storeId}/products`,
-      product,
-      { responseType: 'text' }
-    );
+    return this.http
+      .post(`${this.baseUrl}/stores/${this.storeId}/products`, product, {
+        responseType: 'text',
+      })
+      .pipe(catchError(this.handleError));
   }
 
-  deleteProduct(productId:string) {
-    return this.http.delete(
-      `${this.baseUrl}/stores/${this.storeId}/products/${productId}`
-    );
+  deleteProduct(productId: string) {
+    return this.http
+      .delete(`${this.baseUrl}/stores/${this.storeId}/products/${productId}`)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(err: any) {
-    let errorMessage: string;
-    if (err.error instanceof ErrorEvent) {
-      errorMessage = `An error occurred: ${err.error.message}`;
-    } else {
-      errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
-    }
-    console.error(err);
-    return throwError(() => errorMessage);
+    let message = 'Impossible connect with the DB ';
+
+    return throwError(() => message);
   }
 }

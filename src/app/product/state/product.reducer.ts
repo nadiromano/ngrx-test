@@ -2,11 +2,11 @@ import {
   createFeatureSelector,
   createReducer,
   createSelector,
-  on,
+  on
 } from '@ngrx/store';
+import * as AppState from '../../state/app.state';
 import { Product } from '../product.model';
 import * as ProductActions from './product.actions';
-import * as AppState from '../../state/app.state';
 
 export interface ProductState {
   showProductCard: boolean;
@@ -78,6 +78,11 @@ export const getCurrentProduct = createSelector(
   }
 );
 
+export const getError = createSelector(
+  getProductFeatureState,
+  (state) => state.error
+);
+
 export const ProductReducer = createReducer<ProductState>(
   initialState,
   on(ProductActions.toggleProductCard, (state, action): ProductState => {
@@ -143,8 +148,6 @@ export const ProductReducer = createReducer<ProductState>(
     };
   }),
   on(ProductActions.addProductFailure, (state, action): ProductState => {
-    console.log(action);
-    console.log(state);
     return {
       ...state,
       error: action.error,

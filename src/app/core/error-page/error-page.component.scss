@@ -1,0 +1,16 @@
+.error {
+  &-container {
+    width: 50%;
+    margin: 25px auto;
+    border-radius: 5px;
+    border: 1px solid #df5c5c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &-icon {
+    margin-top: 8px;
+    color: #df5c5c;
+  }
+}
