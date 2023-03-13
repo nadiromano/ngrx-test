@@ -51,6 +51,7 @@
     *ngIf="!(showProductCard$ | async) && !(isProductFormVisible$ | async)"
     [products]="products$ | async"
     [areProductLoading]="areProductLoading$ | async"
+    [currentProduct]="currentProduct$ | async"
     (showProductCardChange)="onShowProductCardChange($event)"
     (currentProductSelectChange)="onCurrentProductSelected($event)"
     (onDeleteProduct)="deleteProduct($event)"

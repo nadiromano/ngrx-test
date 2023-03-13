@@ -20,7 +20,11 @@
           </mat-card-actions>
         </mat-card> -->
         <mat-accordion>
-          <mat-expansion-panel class="list">
+          <mat-expansion-panel
+            class="list"
+            style="margin-bottom: 8px"
+            [expanded]="product.id === currentProduct?.id"
+          >
             <mat-expansion-panel-header
               (click)="onCurrentProductSelected(product)"
             >
@@ -89,5 +93,3 @@
     </ng-container>
   </div>
 </div>
-
-

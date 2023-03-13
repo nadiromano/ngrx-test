@@ -19,6 +19,7 @@ import { State } from '../state/product.reducer';
 export class ProductListComponent {
   @Input() products!: Product[] | null;
   @Input() areProductLoading!: boolean | null;
+  @Input() currentProduct!: Product | null | undefined;
   @Output() showProductCardChange: EventEmitter<MatButtonToggleChange> =
     new EventEmitter();
   @Output() currentProductSelectChange: EventEmitter<Product> =
@@ -37,4 +38,5 @@ export class ProductListComponent {
   deleteProduct(productId: string) {
     this.onDeleteProduct.emit(productId);
   }
+
 }
