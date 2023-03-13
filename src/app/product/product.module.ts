@@ -11,6 +11,7 @@ import { ProductReducer } from './state/product.reducer';
 import { NewProductComponent } from './new-product/new-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorSnackBarComponent } from '../core/error-snack-bar/error-snack-bar.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 const productRoutes: Routes = [
   {
@@ -24,6 +25,7 @@ const productRoutes: Routes = [
     ProductShellComponent,
     ProductListComponent,
     NewProductComponent,
+    ProductCardComponent,
   ],
   imports: [
     CommonModule,

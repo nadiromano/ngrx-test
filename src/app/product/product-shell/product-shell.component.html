@@ -14,13 +14,13 @@
     >
       <mat-button-toggle
         [checked]="!(showProductCard$ | async)"
-        value="false"
+        [value]="false"
         aria-label="Text align left"
       >
         <mat-icon>list</mat-icon>
       </mat-button-toggle>
       <mat-button-toggle
-        value="true"
+        [value]="true"
         aria-label="Text align center"
         [checked]="showProductCard$ | async"
       >
@@ -48,7 +48,7 @@
   </div>
 
   <app-product-list
-    *ngIf="!(showProductCard$ | async) && !(isProductFormVisible$ | async)"
+    *ngIf="!(showProductCard$ | async)"
     [products]="products$ | async"
     [areProductLoading]="areProductLoading$ | async"
     [currentProduct]="currentProduct$ | async"
@@ -56,4 +56,15 @@
     (currentProductSelectChange)="onCurrentProductSelected($event)"
     (onDeleteProduct)="deleteProduct($event)"
   ></app-product-list>
+
+  <app-product-card
+    *ngIf="showProductCard$ | async"
+    [products]="products$ | async"
+    [areProductLoading]="areProductLoading$ | async"
+    [currentProduct]="currentProduct$ | async"
+    (showProductCardChange)="onShowProductCardChange($event)"
+    (currentProductSelectChange)="onCurrentProductSelected($event)"
+    (onDeleteProduct)="deleteProduct($event)"
+  >
+  </app-product-card>
 </div>

@@ -1,0 +1,31 @@
+<div class="card-container">
+  <ng-container *ngFor="let product of products">
+    <mat-card class="card-item">
+      <mat-card-header class="card-header">
+        <mat-card-subtitle>
+          <div class="card-info">
+            <h3 class="card-price">{{ product.price }}€</h3>
+
+            <p class="card-category">
+              {{ product.category }}
+            </p>
+          </div>
+        </mat-card-subtitle>
+        <mat-card-title>{{ product.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="card-body">
+          <p class="card-description">{{ product.description }}</p>
+          <p class="card-employee">{{ product.employee }}</p>
+        </div>
+        <mat-tab-group animationDuration="0ms">
+          <ng-container *ngFor="let review of product.reviews; let i = index">
+            <mat-tab [label]="i + 1 | json">{{ review }}</mat-tab>
+          </ng-container>
+        </mat-tab-group>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      <mat-card-actions> </mat-card-actions>
+    </mat-card>
+  </ng-container>
+</div>
