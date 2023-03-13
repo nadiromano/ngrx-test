@@ -20,10 +20,6 @@ import { ErrorPageComponent } from './core/error-page/error-page.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ShellComponent,
-    NavigationComponent,
-    ErrorSnackBarComponent,
-    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,

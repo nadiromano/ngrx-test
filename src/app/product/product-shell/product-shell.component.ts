@@ -5,6 +5,7 @@ import { Product } from '../product.model';
 import {
   getAreProductLoading,
   getCurrentProduct,
+  getError,
   getIsProductFormVisible,
   getProducts,
   getShowProductCard,
@@ -24,15 +25,14 @@ export class ProductShellComponent implements OnInit {
   showProductCard$!: Observable<boolean>;
   currentProduct$!: Observable<Product | null | undefined>;
   isProductFormVisible$!: Observable<boolean>;
+  error$!: Observable<string>;
 
-  constructor(
-    private store: Store<State>,
-  ) {}
+  constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
     this.products$ = this.store.select(getProducts);
     this.store.dispatch(ProductActions.loadProducts());
-
+    this.error$ = this.store.select(getError);
     this.areProductLoading$ = this.store.select(getAreProductLoading);
     this.showProductCard$ = this.store.select(getShowProductCard);
     this.currentProduct$ = this.store.select(getCurrentProduct);

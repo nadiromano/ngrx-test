@@ -1,5 +1,12 @@
 <div class="product-container">
-  <div *ngIf="!(areProductLoading$ | async) && !(isProductFormVisible$|async)" class="btn-container">
+  <div
+    *ngIf="
+      !(areProductLoading$ | async) &&
+      !(isProductFormVisible$ | async) &&
+      !(error$ | async)
+    "
+    class="btn-container"
+  >
     <mat-button-toggle-group
       #group="matButtonToggleGroup"
       [value]="showProductCard$ | async"

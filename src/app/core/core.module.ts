@@ -10,9 +10,16 @@ import { StoreReducer } from './store/state/store.reducer';
 import { StoreModuleApp } from './store/store.module';
 import { ErrorSnackBarComponent } from './error-snack-bar/error-snack-bar.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { ShellComponent } from './layout/shell/shell.component';
+import { NavigationComponent } from './layout/navigation/navigation.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ShellComponent,
+    NavigationComponent,
+    ErrorSnackBarComponent,
+    ErrorPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
