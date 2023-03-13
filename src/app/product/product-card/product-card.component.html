@@ -5,7 +5,6 @@
         <mat-card-subtitle>
           <div class="card-info">
             <h3 class="card-price">{{ product.price }}€</h3>
-
             <p class="card-category">
               {{ product.category }}
             </p>
@@ -16,16 +15,44 @@
       <mat-card-content>
         <div class="card-body">
           <p class="card-description">{{ product.description }}</p>
-          <p class="card-employee">{{ product.employee }}</p>
         </div>
-        <mat-tab-group animationDuration="0ms">
-          <ng-container *ngFor="let review of product.reviews; let i = index">
-            <mat-tab [label]="i + 1 | json">{{ review }}</mat-tab>
-          </ng-container>
-        </mat-tab-group>
-        <mat-divider></mat-divider>
+        <div class="card-footer">
+          <p class="card-employee">{{ product.employee }}</p>
+          <div class="card-reviews">
+            <mat-icon
+              class="review-icon"
+              [matBadge]="product.reviews ? product.reviews.length : 0"
+              [matBadgeColor]="
+                product.reviews && product.reviews.length > 0
+                  ? 'accent'
+                  : 'primary'
+              "
+              >rate_review</mat-icon
+            >
+            <button
+              *ngIf="product.reviews && product.reviews.length > 0"
+              mat-button
+              color="accent"
+              (click)="openAlertDialog(product)"
+            >
+              See the Review
+            </button>
+          </div>
+        </div>
+
+        <mat-divider style="margin-top: 5px"></mat-divider>
       </mat-card-content>
-      <mat-card-actions> </mat-card-actions>
+      <mat-card-actions>
+        <div class="btn">
+          <button
+            mat-stroked-button
+            color="warn"
+            (click)="deleteProduct(product.id)"
+          >
+            Delete Product
+          </button>
+        </div>
+      </mat-card-actions>
     </mat-card>
   </ng-container>
 </div>

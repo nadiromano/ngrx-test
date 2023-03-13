@@ -50,6 +50,18 @@
     margin-left: 16px;
   }
 
+  &-footer {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+    margin-bottom: 8px;
+    gap: 16px;
+    height: 38px;
+    p {
+      margin: 0;
+    }
+  }
+
   &-price {
     min-width: 50px;
     padding: 3px 8px;
@@ -63,4 +75,14 @@
       margin: 0;
     }
   }
+
+  &-reviews {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.btn {
+  margin-left: 16px;
 }
